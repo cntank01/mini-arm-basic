@@ -43,8 +43,8 @@ void loop() {
 
 void initialize_joint(struct Joint *joint, int pin, int min_val, int max_val){
 
-  joint->sweeper.begin(min_val, max_val, 1, NORMAL);
   //parameters for sweeper: start, end, step_size, normal/back and forth
+  joint->sweeper.begin(min_val, max_val, 1, NORMAL);
 
   joint->min_val = min_val;
   joint->max_val = max_val;
