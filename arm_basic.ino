@@ -33,10 +33,10 @@ void setup() {
 void loop() {
 
   if(metronome.tick()){
-    next_action(left_stick.get_horizontal() < 400, left_stick.get_horizontal() > 600, &base);
-    next_action(right_stick.get_horizontal() < 400, right_stick.get_horizontal() > 600, &claw);
-    next_action(right_stick.get_vertical() > 600, right_stick.get_vertical() < 400, &elbow);
-    next_action(left_stick.get_vertical() > 600, left_stick.get_vertical() < 400, &shoulder);
+    next_action(&base, left_stick.get_horizontal() < 400, left_stick.get_horizontal() > 600);
+    next_action(&claw, right_stick.get_horizontal() < 400, right_stick.get_horizontal() > 600);
+    next_action(&elbow, right_stick.get_vertical() > 600, right_stick.get_vertical() < 400);
+    next_action(&shoulder, left_stick.get_vertical() > 600, left_stick.get_vertical() < 400);
   }
   
 }
@@ -54,7 +54,7 @@ void initialize_joint(struct Joint *joint, int pin, int min_val, int max_val){
   joint->servo.write(joint->current_val); 
 }
 
-void next_action(bool condition1, bool condition2, struct Joint *joint){
+void next_action(struct Joint *joint, bool condition1, bool condition2){
 
   if (condition1) {
     next_pose(joint, FORWARD); 
@@ -80,5 +80,3 @@ void next_pose(struct Joint *joint, bool dir){
       joint->servo.write(joint->current_val);
     }
 }
-
-
