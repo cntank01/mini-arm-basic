@@ -38,7 +38,6 @@ void loop() {
     next_action(&elbow, right_stick.get_vertical() > 600, right_stick.get_vertical() < 400);
     next_action(&shoulder, left_stick.get_vertical() > 600, left_stick.get_vertical() < 400);
   }
-  
 }
 
 void initialize_joint(struct Joint *joint, int pin, int min_val, int max_val){
